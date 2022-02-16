@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DCFB1766-7A22-4F2F-894A-EAC8D2D5456A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AppRestarter</RootNamespace>
+    <AssemblyName>AppRestarter</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO" />
+    <Reference Include="System.Linq.Expressions" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Containers\AppContainer.cs" />
+    <Compile Include="Core\Containers\IAppContainer.cs" />
+    <Compile Include="Core\Containers\ISettingsContainer.cs" />
+    <Compile Include="Core\Containers\SettingsContainer.cs" />
+    <Compile Include="Core\ISingletonBase.cs" />
+    <Compile Include="Core\SingletonBase.cs" />
+    <Compile Include="Core\Observers\IRestartObserver.cs" />
+    <Compile Include="Core\Observers\ISettingsChangeObserver.cs" />
+    <Compile Include="Core\Observers\IWatcherStatusObserver.cs" />
+    <Compile Include="Core\Observers\RestartObserver.cs" />
+    <Compile Include="Core\Observers\SettingsChangeObserver.cs" />
+    <Compile Include="Core\Observers\WatcherStatusObserver.cs" />
+    <Compile Include="Core\Services\ILogService.cs" />
+    <Compile Include="Core\Services\IProcessQueryService.cs" />
+    <Compile Include="Core\Services\IRestarterService.cs" />
+    <Compile Include="Core\Services\IWatcherService.cs" />
+    <Compile Include="Core\Services\LogService.cs" />
+    <Compile Include="Core\Services\ProcessQueryService.cs" />
+    <Compile Include="Core\Services\RestarterService.cs" />
+    <Compile Include="Core\Services\WatcherService.cs" />
+    <Compile Include="Forms\FrmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAbout.Designer.cs">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Extensions\FrmMainExtensions.cs" />
+    <Compile Include="Utilities\Extensions\TimeSpanExtensions.cs" />
+    <Compile Include="Forms\Controls\NumericUpDownEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmEditWatchedApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmEditWatchedApp.Designer.cs">
+      <DependentUpon>FrmEditWatchedApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmLog.Designer.cs">
+      <DependentUpon>FrmLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmModifyArgument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmModifyArgument.Designer.cs">
+      <DependentUpon>FrmModifyArgument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAddArgument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAddArgument.Designer.cs">
+      <DependentUpon>FrmAddArgument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAddWatchedApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAddWatchedApp.Designer.cs">
+      <DependentUpon>FrmAddWatchedApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSettings.Designer.cs">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CmdArgument.cs" />
+    <Compile Include="Models\LogEntry.cs" />
+    <Compile Include="Models\LogSettings.cs" />
+    <Compile Include="Models\Settings.cs" />
+    <Compile Include="Models\WatchedApp.cs" />
+    <Compile Include="Models\WatcherStatus.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Startup.cs" />
+    <EmbeddedResource Include="Forms\FrmAbout.resx">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmEditWatchedApp.resx">
+      <DependentUpon>FrmEditWatchedApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmLog.resx">
+      <DependentUpon>FrmLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmModifyArgument.resx">
+      <DependentUpon>FrmModifyArgument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAddArgument.resx">
+      <DependentUpon>FrmAddArgument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAddWatchedApp.resx">
+      <DependentUpon>FrmAddWatchedApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSettings.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
