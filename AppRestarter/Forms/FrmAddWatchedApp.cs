@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using AppRestarter.Core.Containers;
@@ -328,5 +329,9 @@ namespace AppRestarter.Forms
             existing = null;
             return false;
         }
+
+        private void labelReadme_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) 
+            => Process.Start("https://github.com/Codeh4ck/App-Restarter/blob/main/README.md");
+    
     }
 }
