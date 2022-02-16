@@ -38,8 +38,10 @@ namespace AppRestarter.Forms
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkLogAppEvents = new System.Windows.Forms.CheckBox();
             this.cbRestartType = new System.Windows.Forms.ComboBox();
+            this.numRestartAfter = new AppRestarter.Forms.Controls.NumericUpDownEx();
             this.label7 = new System.Windows.Forms.Label();
             this.cbPollType = new System.Windows.Forms.ComboBox();
+            this.numPollInterval = new AppRestarter.Forms.Controls.NumericUpDownEx();
             this.label6 = new System.Windows.Forms.Label();
             this.chkRunThroughCmd = new System.Windows.Forms.CheckBox();
             this.chkShowWindow = new System.Windows.Forms.CheckBox();
@@ -60,14 +62,12 @@ namespace AppRestarter.Forms
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtAppPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.numRestartAfter = new AppRestarter.Forms.Controls.NumericUpDownEx();
-            this.numPollInterval = new AppRestarter.Forms.Controls.NumericUpDownEx();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRestartAfter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPollInterval)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -164,6 +164,13 @@ namespace AppRestarter.Forms
             this.cbRestartType.TabIndex = 13;
             this.cbRestartType.SelectedIndexChanged += new System.EventHandler(this.cbRestartType_SelectedIndexChanged);
             // 
+            // numRestartAfter
+            // 
+            this.numRestartAfter.Location = new System.Drawing.Point(28, 193);
+            this.numRestartAfter.Name = "numRestartAfter";
+            this.numRestartAfter.Size = new System.Drawing.Size(123, 23);
+            this.numRestartAfter.TabIndex = 12;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -187,6 +194,13 @@ namespace AppRestarter.Forms
             this.cbPollType.Size = new System.Drawing.Size(121, 23);
             this.cbPollType.TabIndex = 10;
             this.cbPollType.SelectedIndexChanged += new System.EventHandler(this.cbPollType_SelectedIndexChanged);
+            // 
+            // numPollInterval
+            // 
+            this.numPollInterval.Location = new System.Drawing.Point(28, 140);
+            this.numPollInterval.Name = "numPollInterval";
+            this.numPollInterval.Size = new System.Drawing.Size(123, 23);
+            this.numPollInterval.TabIndex = 9;
             // 
             // label6
             // 
@@ -323,6 +337,7 @@ namespace AppRestarter.Forms
             this.labelReadme.TabIndex = 9;
             this.labelReadme.TabStop = true;
             this.labelReadme.Text = "the README";
+            this.labelReadme.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.labelReadme_LinkClicked);
             // 
             // groupBox4
             // 
@@ -389,20 +404,6 @@ namespace AppRestarter.Forms
             this.label1.TabIndex = 11;
             this.label1.Text = "Application path:";
             // 
-            // numRestartAfter
-            // 
-            this.numRestartAfter.Location = new System.Drawing.Point(28, 193);
-            this.numRestartAfter.Name = "numRestartAfter";
-            this.numRestartAfter.Size = new System.Drawing.Size(123, 23);
-            this.numRestartAfter.TabIndex = 12;
-            // 
-            // numPollInterval
-            // 
-            this.numPollInterval.Location = new System.Drawing.Point(28, 140);
-            this.numPollInterval.Name = "numPollInterval";
-            this.numPollInterval.Size = new System.Drawing.Size(123, 23);
-            this.numPollInterval.TabIndex = 9;
-            // 
             // FrmAddWatchedApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -428,11 +429,11 @@ namespace AppRestarter.Forms
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRestartAfter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPollInterval)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numRestartAfter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numPollInterval)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
