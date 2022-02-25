@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using AppRestarter.Core.Containers;
 using AppRestarter.Core.Observers;
@@ -33,6 +32,9 @@ namespace AppRestarter.Core.Services
             _processQueryService = ProcessQueryService.GetInstance();
             _watcherStatusObserver = WatcherStatusObserver.GetInstance();
 
+            ICrashMonitorService crashMonitorService = CrashMonitorService.GetInstance();
+            crashMonitorService.OnSignalMonitorTermination += CrashMonitorService_OnSignalMonitorTermination;
+
             _watcherStatus = WatcherStatus.Idle;
             _watcherStatusObserver.NotifyWatcherStatus(_watcherStatus);
         }
@@ -44,7 +46,7 @@ namespace AppRestarter.Core.Services
 
         public bool IsWatching()
         {
-            return _watcherThreads.Values.Any(x => x.ThreadState == ThreadState.Background);
+            return _watcherStatus == WatcherStatus.Running;
         }
 
         public bool StartWatching()
@@ -127,13 +129,20 @@ namespace AppRestarter.Core.Services
             _watcherThreads.Clear();
             _processIds.Clear();
 
-            if (stopCount > 0)
-            {
-                _watcherStatus = WatcherStatus.Stopped;
-                _watcherStatusObserver.NotifyWatcherStatus(_watcherStatus);
-            }
+            _watcherStatus = WatcherStatus.Stopped;
+            _watcherStatusObserver.NotifyWatcherStatus(_watcherStatus);
 
             return stopCount > 0;
+        }
+
+        private void CrashMonitorService_OnSignalMonitorTermination(WatchedApp app)
+        {
+            if (_watcherThreads.ContainsKey(app.Id))
+            {
+                _watcherThreads[app.Id].Abort();
+                _watcherThreads.TryRemove(app.Id, out _);
+                _processIds.TryRemove(app.Id, out _);
+            }
         }
 
         public void Dispose() => StopWatching();

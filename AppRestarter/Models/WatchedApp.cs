@@ -9,6 +9,7 @@ namespace AppRestarter.Models
         public string BaseDirectory { get; set; }
         public string ExecutableName { get; set; }
         public bool PassCmdArgsOnly { get; set; }
+        public int CrashThreshold { get; set; }
         public List<CmdArgument> Arguments { get; set; }
         public bool ShowWindow { get; set; }
         public bool RunThroughCmd { get; set; }

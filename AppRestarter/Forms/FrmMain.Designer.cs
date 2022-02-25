@@ -44,9 +44,6 @@
             this.addApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.startWatchingSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stopWatchingSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.cmsTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showAppRestarterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,6 +59,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.statusStripLabelStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnStartStop = new System.Windows.Forms.Button();
             this.cmsMain.SuspendLayout();
             this.cmsTray.SuspendLayout();
             this.menuStripMain.SuspendLayout();
@@ -70,6 +68,9 @@
             // 
             // listWatchedApps
             // 
+            this.listWatchedApps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listWatchedApps.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnBaseDirectory,
             this.columnAppName,
@@ -81,12 +82,11 @@
             this.columnRestartAfter,
             this.columnRestartCount});
             this.listWatchedApps.ContextMenuStrip = this.cmsMain;
-            this.listWatchedApps.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listWatchedApps.FullRowSelect = true;
             this.listWatchedApps.HideSelection = false;
             this.listWatchedApps.Location = new System.Drawing.Point(0, 24);
             this.listWatchedApps.Name = "listWatchedApps";
-            this.listWatchedApps.Size = new System.Drawing.Size(1396, 735);
+            this.listWatchedApps.Size = new System.Drawing.Size(1396, 673);
             this.listWatchedApps.TabIndex = 0;
             this.listWatchedApps.UseCompatibleStateImageBehavior = false;
             this.listWatchedApps.View = System.Windows.Forms.View.Details;
@@ -141,12 +141,9 @@
             this.cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addApplicationToolStripMenuItem,
             this.editSelectedToolStripMenuItem,
-            this.removeSelectedToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.startWatchingSelectedToolStripMenuItem,
-            this.stopWatchingSelectedToolStripMenuItem});
+            this.removeSelectedToolStripMenuItem});
             this.cmsMain.Name = "cmsMain";
-            this.cmsMain.Size = new System.Drawing.Size(164, 120);
+            this.cmsMain.Size = new System.Drawing.Size(164, 70);
             // 
             // addApplicationToolStripMenuItem
             // 
@@ -171,27 +168,6 @@
             this.removeSelectedToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.removeSelectedToolStripMenuItem.Text = "Remove selected";
             this.removeSelectedToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(160, 6);
-            // 
-            // startWatchingSelectedToolStripMenuItem
-            // 
-            this.startWatchingSelectedToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("startWatchingSelectedToolStripMenuItem.Image")));
-            this.startWatchingSelectedToolStripMenuItem.Name = "startWatchingSelectedToolStripMenuItem";
-            this.startWatchingSelectedToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.startWatchingSelectedToolStripMenuItem.Text = "Start watching";
-            this.startWatchingSelectedToolStripMenuItem.Click += new System.EventHandler(this.startWatchingSelectedToolStripMenuItem_Click);
-            // 
-            // stopWatchingSelectedToolStripMenuItem
-            // 
-            this.stopWatchingSelectedToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("stopWatchingSelectedToolStripMenuItem.Image")));
-            this.stopWatchingSelectedToolStripMenuItem.Name = "stopWatchingSelectedToolStripMenuItem";
-            this.stopWatchingSelectedToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.stopWatchingSelectedToolStripMenuItem.Text = "Stop watching";
-            this.stopWatchingSelectedToolStripMenuItem.Click += new System.EventHandler(this.stopWatchingSelectedToolStripMenuItem_Click);
             // 
             // trayIcon
             // 
@@ -289,7 +265,7 @@
             // 
             this.gitHubToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("gitHubToolStripMenuItem.Image")));
             this.gitHubToolStripMenuItem.Name = "gitHubToolStripMenuItem";
-            this.gitHubToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gitHubToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.gitHubToolStripMenuItem.Text = "GitHub";
             this.gitHubToolStripMenuItem.Click += new System.EventHandler(this.gitHubToolStripMenuItem_Click);
             // 
@@ -297,7 +273,7 @@
             // 
             this.aboutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutToolStripMenuItem.Image")));
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -317,11 +293,26 @@
             this.statusStripLabelStatus.Size = new System.Drawing.Size(26, 17);
             this.statusStripLabelStatus.Text = "Idle";
             // 
+            // btnStartStop
+            // 
+            this.btnStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStartStop.Image = ((System.Drawing.Image)(resources.GetObject("btnStartStop.Image")));
+            this.btnStartStop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStartStop.Location = new System.Drawing.Point(1264, 701);
+            this.btnStartStop.Name = "btnStartStop";
+            this.btnStartStop.Size = new System.Drawing.Size(124, 31);
+            this.btnStartStop.TabIndex = 3;
+            this.btnStartStop.Text = "Start monitoring";
+            this.btnStartStop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnStartStop.UseVisualStyleBackColor = true;
+            this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1396, 759);
+            this.Controls.Add(this.btnStartStop);
             this.Controls.Add(this.statusStripMain);
             this.Controls.Add(this.listWatchedApps);
             this.Controls.Add(this.menuStripMain);
@@ -333,6 +324,7 @@
             this.Text = "App Restarter";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmMain_Load);
+            this.Shown += new System.EventHandler(this.FrmMain_Shown);
             this.Resize += new System.EventHandler(this.FrmMain_Resize);
             this.cmsMain.ResumeLayout(false);
             this.cmsTray.ResumeLayout(false);
@@ -370,14 +362,12 @@
         private System.Windows.Forms.ToolStripMenuItem addApplicationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editSelectedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeSelectedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem startWatchingSelectedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stopWatchingSelectedToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader columnLogEvents;
         private System.Windows.Forms.ColumnHeader columnRunOnCmd;
         public System.Windows.Forms.ListView listWatchedApps;
         private System.Windows.Forms.ToolStripMenuItem showAppRestarterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
+        public System.Windows.Forms.Button btnStartStop;
     }
 }
 

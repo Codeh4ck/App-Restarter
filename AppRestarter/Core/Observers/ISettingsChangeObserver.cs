@@ -4,8 +4,8 @@ namespace AppRestarter.Core.Observers
 {
     public interface ISettingsChangeObserver
     {
-        delegate void SettingsChanged(Settings settings);
-        event SettingsChanged OnSettingsChanged;
+        delegate void SettingsChangedEvent(Settings settings);
+        event SettingsChangedEvent OnSettingsChanged;
 
         void NotifySettingsChange(Settings settings);
     }

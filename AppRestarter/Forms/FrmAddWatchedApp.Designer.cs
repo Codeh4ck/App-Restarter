@@ -62,12 +62,16 @@ namespace AppRestarter.Forms
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtAppPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.numThreshold = new AppRestarter.Forms.Controls.NumericUpDownEx();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRestartAfter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPollInterval)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numThreshold)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -78,7 +82,7 @@ namespace AppRestarter.Forms
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(15, 139);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(326, 145);
+            this.groupBox1.Size = new System.Drawing.Size(326, 128);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Application details";
@@ -87,7 +91,7 @@ namespace AppRestarter.Forms
             // 
             this.labelExecutableName.AutoSize = true;
             this.labelExecutableName.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.labelExecutableName.Location = new System.Drawing.Point(36, 104);
+            this.labelExecutableName.Location = new System.Drawing.Point(36, 98);
             this.labelExecutableName.Name = "labelExecutableName";
             this.labelExecutableName.Size = new System.Drawing.Size(12, 15);
             this.labelExecutableName.TabIndex = 7;
@@ -96,7 +100,7 @@ namespace AppRestarter.Forms
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 82);
+            this.label5.Location = new System.Drawing.Point(25, 76);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 15);
             this.label5.TabIndex = 6;
@@ -106,7 +110,7 @@ namespace AppRestarter.Forms
             // 
             this.labelDirectory.AutoSize = true;
             this.labelDirectory.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.labelDirectory.Location = new System.Drawing.Point(36, 54);
+            this.labelDirectory.Location = new System.Drawing.Point(36, 48);
             this.labelDirectory.Name = "labelDirectory";
             this.labelDirectory.Size = new System.Drawing.Size(12, 15);
             this.labelDirectory.TabIndex = 5;
@@ -115,7 +119,7 @@ namespace AppRestarter.Forms
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 32);
+            this.label2.Location = new System.Drawing.Point(25, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 15);
             this.label2.TabIndex = 4;
@@ -132,9 +136,9 @@ namespace AppRestarter.Forms
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.chkRunThroughCmd);
             this.groupBox2.Controls.Add(this.chkShowWindow);
-            this.groupBox2.Location = new System.Drawing.Point(15, 291);
+            this.groupBox2.Location = new System.Drawing.Point(15, 273);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(326, 239);
+            this.groupBox2.Size = new System.Drawing.Size(326, 227);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Settings";
@@ -142,7 +146,7 @@ namespace AppRestarter.Forms
             // chkLogAppEvents
             // 
             this.chkLogAppEvents.AutoSize = true;
-            this.chkLogAppEvents.Location = new System.Drawing.Point(28, 77);
+            this.chkLogAppEvents.Location = new System.Drawing.Point(28, 74);
             this.chkLogAppEvents.Name = "chkLogAppEvents";
             this.chkLogAppEvents.Size = new System.Drawing.Size(145, 19);
             this.chkLogAppEvents.TabIndex = 14;
@@ -158,7 +162,7 @@ namespace AppRestarter.Forms
             "Seconds",
             "Minutes",
             "Hours"});
-            this.cbRestartType.Location = new System.Drawing.Point(157, 193);
+            this.cbRestartType.Location = new System.Drawing.Point(157, 177);
             this.cbRestartType.Name = "cbRestartType";
             this.cbRestartType.Size = new System.Drawing.Size(121, 23);
             this.cbRestartType.TabIndex = 13;
@@ -166,7 +170,7 @@ namespace AppRestarter.Forms
             // 
             // numRestartAfter
             // 
-            this.numRestartAfter.Location = new System.Drawing.Point(28, 193);
+            this.numRestartAfter.Location = new System.Drawing.Point(28, 177);
             this.numRestartAfter.Name = "numRestartAfter";
             this.numRestartAfter.Size = new System.Drawing.Size(123, 23);
             this.numRestartAfter.TabIndex = 12;
@@ -174,7 +178,7 @@ namespace AppRestarter.Forms
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 175);
+            this.label7.Location = new System.Drawing.Point(25, 159);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 15);
             this.label7.TabIndex = 11;
@@ -189,7 +193,7 @@ namespace AppRestarter.Forms
             "Seconds",
             "Minutes",
             "Hours"});
-            this.cbPollType.Location = new System.Drawing.Point(157, 140);
+            this.cbPollType.Location = new System.Drawing.Point(157, 124);
             this.cbPollType.Name = "cbPollType";
             this.cbPollType.Size = new System.Drawing.Size(121, 23);
             this.cbPollType.TabIndex = 10;
@@ -197,7 +201,7 @@ namespace AppRestarter.Forms
             // 
             // numPollInterval
             // 
-            this.numPollInterval.Location = new System.Drawing.Point(28, 140);
+            this.numPollInterval.Location = new System.Drawing.Point(28, 124);
             this.numPollInterval.Name = "numPollInterval";
             this.numPollInterval.Size = new System.Drawing.Size(123, 23);
             this.numPollInterval.TabIndex = 9;
@@ -205,7 +209,7 @@ namespace AppRestarter.Forms
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(25, 122);
+            this.label6.Location = new System.Drawing.Point(25, 106);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 15);
             this.label6.TabIndex = 8;
@@ -214,7 +218,7 @@ namespace AppRestarter.Forms
             // chkRunThroughCmd
             // 
             this.chkRunThroughCmd.AutoSize = true;
-            this.chkRunThroughCmd.Location = new System.Drawing.Point(28, 52);
+            this.chkRunThroughCmd.Location = new System.Drawing.Point(28, 49);
             this.chkRunThroughCmd.Name = "chkRunThroughCmd";
             this.chkRunThroughCmd.Size = new System.Drawing.Size(141, 19);
             this.chkRunThroughCmd.TabIndex = 1;
@@ -224,7 +228,7 @@ namespace AppRestarter.Forms
             // chkShowWindow
             // 
             this.chkShowWindow.AutoSize = true;
-            this.chkShowWindow.Location = new System.Drawing.Point(28, 27);
+            this.chkShowWindow.Location = new System.Drawing.Point(28, 24);
             this.chkShowWindow.Name = "chkShowWindow";
             this.chkShowWindow.Size = new System.Drawing.Size(100, 19);
             this.chkShowWindow.TabIndex = 0;
@@ -239,14 +243,14 @@ namespace AppRestarter.Forms
             this.groupBox3.Controls.Add(this.listArguments);
             this.groupBox3.Location = new System.Drawing.Point(347, 139);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(360, 391);
+            this.groupBox3.Size = new System.Drawing.Size(360, 361);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Command line arguments";
             // 
             // btnArgAdd
             // 
-            this.btnArgAdd.Location = new System.Drawing.Point(45, 362);
+            this.btnArgAdd.Location = new System.Drawing.Point(45, 328);
             this.btnArgAdd.Name = "btnArgAdd";
             this.btnArgAdd.Size = new System.Drawing.Size(99, 23);
             this.btnArgAdd.TabIndex = 8;
@@ -256,7 +260,7 @@ namespace AppRestarter.Forms
             // 
             // btnArgModify
             // 
-            this.btnArgModify.Location = new System.Drawing.Point(150, 362);
+            this.btnArgModify.Location = new System.Drawing.Point(150, 328);
             this.btnArgModify.Name = "btnArgModify";
             this.btnArgModify.Size = new System.Drawing.Size(99, 23);
             this.btnArgModify.TabIndex = 7;
@@ -266,7 +270,7 @@ namespace AppRestarter.Forms
             // 
             // btnArgRemove
             // 
-            this.btnArgRemove.Location = new System.Drawing.Point(255, 362);
+            this.btnArgRemove.Location = new System.Drawing.Point(255, 328);
             this.btnArgRemove.Name = "btnArgRemove";
             this.btnArgRemove.Size = new System.Drawing.Size(99, 23);
             this.btnArgRemove.TabIndex = 6;
@@ -283,7 +287,7 @@ namespace AppRestarter.Forms
             this.listArguments.HideSelection = false;
             this.listArguments.Location = new System.Drawing.Point(6, 22);
             this.listArguments.Name = "listArguments";
-            this.listArguments.Size = new System.Drawing.Size(348, 334);
+            this.listArguments.Size = new System.Drawing.Size(348, 300);
             this.listArguments.TabIndex = 0;
             this.listArguments.UseCompatibleStateImageBehavior = false;
             this.listArguments.View = System.Windows.Forms.View.Details;
@@ -300,7 +304,7 @@ namespace AppRestarter.Forms
             // 
             // btnAddApp
             // 
-            this.btnAddApp.Location = new System.Drawing.Point(592, 541);
+            this.btnAddApp.Location = new System.Drawing.Point(592, 506);
             this.btnAddApp.Name = "btnAddApp";
             this.btnAddApp.Size = new System.Drawing.Size(115, 35);
             this.btnAddApp.TabIndex = 6;
@@ -310,7 +314,7 @@ namespace AppRestarter.Forms
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(471, 541);
+            this.btnCancel.Location = new System.Drawing.Point(471, 506);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(115, 35);
             this.btnCancel.TabIndex = 7;
@@ -321,7 +325,7 @@ namespace AppRestarter.Forms
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 551);
+            this.label8.Location = new System.Drawing.Point(22, 516);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(144, 15);
             this.label8.TabIndex = 8;
@@ -331,7 +335,7 @@ namespace AppRestarter.Forms
             // 
             this.labelReadme.AutoSize = true;
             this.labelReadme.LinkColor = System.Drawing.Color.DeepSkyBlue;
-            this.labelReadme.Location = new System.Drawing.Point(161, 551);
+            this.labelReadme.Location = new System.Drawing.Point(165, 516);
             this.labelReadme.Name = "labelReadme";
             this.labelReadme.Size = new System.Drawing.Size(73, 15);
             this.labelReadme.TabIndex = 9;
@@ -341,8 +345,11 @@ namespace AppRestarter.Forms
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.labelWhatIsThis);
+            this.groupBox4.Controls.Add(this.numThreshold);
             this.groupBox4.Controls.Add(this.chkPassCmdArgsOnly);
+            this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.btnBrowse);
             this.groupBox4.Controls.Add(this.txtAppPath);
             this.groupBox4.Controls.Add(this.label1);
@@ -404,11 +411,51 @@ namespace AppRestarter.Forms
             this.label1.TabIndex = 11;
             this.label1.Text = "Application path:";
             // 
+            // numThreshold
+            // 
+            this.numThreshold.Location = new System.Drawing.Point(482, 79);
+            this.numThreshold.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numThreshold.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numThreshold.Name = "numThreshold";
+            this.numThreshold.Size = new System.Drawing.Size(86, 23);
+            this.numThreshold.TabIndex = 16;
+            this.numThreshold.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(415, 82);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 15);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Stop after:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(574, 82);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(46, 15);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "crashes";
+            // 
             // FrmAddWatchedApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 591);
+            this.ClientSize = new System.Drawing.Size(721, 551);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.labelReadme);
             this.Controls.Add(this.label8);
@@ -434,6 +481,7 @@ namespace AppRestarter.Forms
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numThreshold)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -472,5 +520,8 @@ namespace AppRestarter.Forms
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.TextBox txtAppPath;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label9;
+        private NumericUpDownEx numThreshold;
+        private System.Windows.Forms.Label label4;
     }
 }

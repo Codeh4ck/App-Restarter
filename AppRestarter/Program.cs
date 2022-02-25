@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using AppRestarter.Core.Containers;
 using AppRestarter.Forms;
 
 namespace AppRestarter
@@ -16,6 +12,10 @@ namespace AppRestarter
         [STAThread]
         static void Main()
         {
+
+            Application.ThreadException += (sender, args) => FrmException.ShowExceptionForm(args.Exception);
+            AppDomain.CurrentDomain.UnhandledException += (sender, args) => FrmException.ShowExceptionForm((Exception)args.ExceptionObject);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmMain());

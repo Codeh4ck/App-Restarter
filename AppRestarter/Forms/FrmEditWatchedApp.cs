@@ -52,6 +52,7 @@ namespace AppRestarter.Forms
             cbPollType.SelectedIndex = _watchedApp.PollIntervalType;
             cbRestartType.SelectedIndex = _watchedApp.RestartAfterType;
 
+            numThreshold.Value = _watchedApp.CrashThreshold;
             numPollInterval.Value = GetTimespanValue(_watchedApp.PollInterval, _watchedApp.PollIntervalType);
             numRestartAfter.Value = GetTimespanValue(_watchedApp.RestartAfter, _watchedApp.RestartAfterType);
         }
@@ -131,6 +132,7 @@ namespace AppRestarter.Forms
             TimeSpan pollInterval = GetPollInterval();
             if (pollInterval == default) return;
 
+            _watchedApp.CrashThreshold = Convert.ToInt32(numThreshold.Value);
             _watchedApp.Arguments = GetArguments();
             _watchedApp.PollInterval = GetPollInterval();
             _watchedApp.RestartAfter = GetRestartAfter();

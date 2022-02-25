@@ -1,0 +1,13 @@
+{
+    "Version": {
+      "Major": 1,
+      "Minor": 1,
+      "Build": 0,
+      "Revision": 0,
+      "MajorRevision": 0,
+      "MinorRevision": 0
+    },
+    "ChangeLog": "* Updated UI to be more user friendly\r\n* App shutdowns due to misconfigurations are now handled properly\r\n* AppRestarter can now auto-monitor on startup\r\n* Added automatic updater (duh)\r\n* Fixed a lot of UI/UX bugs\r\n* QoL updates",
+    "DownloadUrl": "https://github.com/Codeh4ck/App-Restarter/releases/download/v1.1/AppRestarter.zip",
+    "PublishedAt": "2022-02-25T10:18:48.3226534+02:00"
+  }

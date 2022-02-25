@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppRestarter", "AppRestarter\AppRestarter.csproj", "{DCFB1766-7A22-4F2F-894A-EAC8D2D5456A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppRestarter.Updater", "AppRestarter.Updater\AppRestarter.Updater.csproj", "{342CC058-2696-4E02-AA4C-154A0147341B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DCFB1766-7A22-4F2F-894A-EAC8D2D5456A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCFB1766-7A22-4F2F-894A-EAC8D2D5456A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCFB1766-7A22-4F2F-894A-EAC8D2D5456A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{342CC058-2696-4E02-AA4C-154A0147341B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{342CC058-2696-4E02-AA4C-154A0147341B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{342CC058-2696-4E02-AA4C-154A0147341B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{342CC058-2696-4E02-AA4C-154A0147341B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

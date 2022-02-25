@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkAutoStartMonitoring = new System.Windows.Forms.CheckBox();
             this.chkAutoResizeColumns = new System.Windows.Forms.CheckBox();
             this.chkAlwaysShowLog = new System.Windows.Forms.CheckBox();
             this.chkStartWithWindows = new System.Windows.Forms.CheckBox();
@@ -41,27 +42,40 @@
             this.chkSaveLogsToDisk = new System.Windows.Forms.CheckBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.chkAutoCheckForUpdates = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkAutoCheckForUpdates);
+            this.groupBox1.Controls.Add(this.chkAutoStartMonitoring);
             this.groupBox1.Controls.Add(this.chkAutoResizeColumns);
             this.groupBox1.Controls.Add(this.chkAlwaysShowLog);
             this.groupBox1.Controls.Add(this.chkStartWithWindows);
             this.groupBox1.Controls.Add(this.chkMinimizeToTray);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(340, 149);
+            this.groupBox1.Size = new System.Drawing.Size(340, 194);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Application";
             // 
+            // chkAutoStartMonitoring
+            // 
+            this.chkAutoStartMonitoring.AutoSize = true;
+            this.chkAutoStartMonitoring.Location = new System.Drawing.Point(29, 79);
+            this.chkAutoStartMonitoring.Name = "chkAutoStartMonitoring";
+            this.chkAutoStartMonitoring.Size = new System.Drawing.Size(246, 19);
+            this.chkAutoStartMonitoring.TabIndex = 4;
+            this.chkAutoStartMonitoring.Text = "Automatically start monitoring on startup";
+            this.chkAutoStartMonitoring.UseVisualStyleBackColor = true;
+            // 
             // chkAutoResizeColumns
             // 
             this.chkAutoResizeColumns.AutoSize = true;
-            this.chkAutoResizeColumns.Location = new System.Drawing.Point(29, 107);
+            this.chkAutoResizeColumns.Location = new System.Drawing.Point(29, 154);
             this.chkAutoResizeColumns.Name = "chkAutoResizeColumns";
             this.chkAutoResizeColumns.Size = new System.Drawing.Size(181, 19);
             this.chkAutoResizeColumns.TabIndex = 3;
@@ -71,7 +85,7 @@
             // chkAlwaysShowLog
             // 
             this.chkAlwaysShowLog.AutoSize = true;
-            this.chkAlwaysShowLog.Location = new System.Drawing.Point(29, 82);
+            this.chkAlwaysShowLog.Location = new System.Drawing.Point(29, 129);
             this.chkAlwaysShowLog.Name = "chkAlwaysShowLog";
             this.chkAlwaysShowLog.Size = new System.Drawing.Size(160, 19);
             this.chkAlwaysShowLog.TabIndex = 2;
@@ -81,7 +95,7 @@
             // chkStartWithWindows
             // 
             this.chkStartWithWindows.AutoSize = true;
-            this.chkStartWithWindows.Location = new System.Drawing.Point(29, 57);
+            this.chkStartWithWindows.Location = new System.Drawing.Point(29, 54);
             this.chkStartWithWindows.Name = "chkStartWithWindows";
             this.chkStartWithWindows.Size = new System.Drawing.Size(202, 19);
             this.chkStartWithWindows.TabIndex = 1;
@@ -91,7 +105,7 @@
             // chkMinimizeToTray
             // 
             this.chkMinimizeToTray.AutoSize = true;
-            this.chkMinimizeToTray.Location = new System.Drawing.Point(29, 32);
+            this.chkMinimizeToTray.Location = new System.Drawing.Point(29, 29);
             this.chkMinimizeToTray.Name = "chkMinimizeToTray";
             this.chkMinimizeToTray.Size = new System.Drawing.Size(112, 19);
             this.chkMinimizeToTray.TabIndex = 0;
@@ -105,7 +119,7 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.chkSaveLogsOnDifferentFiles);
             this.groupBox2.Controls.Add(this.chkSaveLogsToDisk);
-            this.groupBox2.Location = new System.Drawing.Point(13, 168);
+            this.groupBox2.Location = new System.Drawing.Point(13, 213);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(340, 163);
             this.groupBox2.TabIndex = 1;
@@ -163,7 +177,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(278, 337);
+            this.btnSave.Location = new System.Drawing.Point(278, 382);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 2;
@@ -174,7 +188,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(197, 337);
+            this.btnCancel.Location = new System.Drawing.Point(197, 382);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
@@ -182,13 +196,23 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // chkAutoCheckForUpdates
+            // 
+            this.chkAutoCheckForUpdates.AutoSize = true;
+            this.chkAutoCheckForUpdates.Location = new System.Drawing.Point(29, 104);
+            this.chkAutoCheckForUpdates.Name = "chkAutoCheckForUpdates";
+            this.chkAutoCheckForUpdates.Size = new System.Drawing.Size(197, 19);
+            this.chkAutoCheckForUpdates.TabIndex = 5;
+            this.chkAutoCheckForUpdates.Text = "Automatically check for updates";
+            this.chkAutoCheckForUpdates.UseVisualStyleBackColor = true;
+            // 
             // FrmSettings
             // 
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(365, 370);
+            this.ClientSize = new System.Drawing.Size(365, 417);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupBox2);
@@ -224,5 +248,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.CheckBox chkAutoResizeColumns;
+        private System.Windows.Forms.CheckBox chkAutoStartMonitoring;
+        private System.Windows.Forms.CheckBox chkAutoCheckForUpdates;
     }
 }

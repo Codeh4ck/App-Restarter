@@ -9,6 +9,8 @@ namespace AppRestarter.Models
         public Point WindowPosition { get; set; } = default;
         public bool MinimizeToTray { get; set; } = true;
         public bool StartWithWindows { get; set; } = false;
+        public bool AutoStartWatching { get; set; } = false;
+        public bool AutoCheckForUpdates { get; set; } = true;
         public bool AlwaysShowLog { get; set; } = false;
         public bool AutoResizeColumns { get; set; } = true;
         public bool SaveLogsToDisk { get; set; } = true;
