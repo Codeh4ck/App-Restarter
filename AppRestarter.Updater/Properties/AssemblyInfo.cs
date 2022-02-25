@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AppRestarter.Updater")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A process monitoring tool which enables fully-customized automatic application restarting on shutdown")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Nikolas Andreou")]
 [assembly: AssemblyProduct("AppRestarter.Updater")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCopyright("Copyright ©2022 Nikolas Andreou. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
