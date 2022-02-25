@@ -38,6 +38,9 @@
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -64,6 +67,8 @@
     <Compile Include="Core\Containers\ISettingsContainer.cs" />
     <Compile Include="Core\Containers\SettingsContainer.cs" />
     <Compile Include="Core\ISingletonBase.cs" />
+    <Compile Include="Core\Services\CrashMonitorService.cs" />
+    <Compile Include="Core\Services\ICrashMonitorService.cs" />
     <Compile Include="Core\SingletonBase.cs" />
     <Compile Include="Core\Observers\IRestartObserver.cs" />
     <Compile Include="Core\Observers\ISettingsChangeObserver.cs" />
@@ -85,6 +90,20 @@
     <Compile Include="Forms\FrmAbout.Designer.cs">
       <DependentUpon>FrmAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmException.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmException.Designer.cs">
+      <DependentUpon>FrmException.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmUpdateAvailable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmUpdateAvailable.Designer.cs">
+      <DependentUpon>FrmUpdateAvailable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CrashMonitorEntry.cs" />
+    <Compile Include="Models\Update.cs" />
     <Compile Include="Utilities\Extensions\FrmMainExtensions.cs" />
     <Compile Include="Utilities\Extensions\TimeSpanExtensions.cs" />
     <Compile Include="Forms\Controls\NumericUpDownEx.cs">
@@ -147,6 +166,9 @@
     <EmbeddedResource Include="Forms\FrmEditWatchedApp.resx">
       <DependentUpon>FrmEditWatchedApp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmException.resx">
+      <DependentUpon>FrmException.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmLog.resx">
       <DependentUpon>FrmLog.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +187,9 @@
     <EmbeddedResource Include="Forms\FrmSettings.resx">
       <DependentUpon>FrmSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmUpdateAvailable.resx">
+      <DependentUpon>FrmUpdateAvailable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -173,6 +198,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -190,6 +216,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <None Include="Resources\Stop.png" />
+    <None Include="Resources\Start.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
