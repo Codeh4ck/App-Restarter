@@ -95,6 +95,7 @@ namespace AppRestarter.Forms
                 BaseDirectory = chkPassCmdArgsOnly.Checked ? txtAppPath.Text : Path.GetDirectoryName(txtAppPath.Text),
                 ExecutableName = chkPassCmdArgsOnly.Checked ? "Command Line" : Path.GetFileName(txtAppPath.Text),
                 PassCmdArgsOnly = chkPassCmdArgsOnly.Checked,
+                CrashThreshold = Convert.ToInt32(numThreshold.Value),
                 LogApplicationEvents = chkLogAppEvents.Checked,
                 ShowWindow = chkShowWindow.Checked,
                 RunThroughCmd = chkRunThroughCmd.Checked,

@@ -47,10 +47,14 @@
             this.chkShowWindow = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSaveChanges = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.numThreshold = new AppRestarter.Forms.Controls.NumericUpDownEx();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRestartAfter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPollInterval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numThreshold)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -251,6 +255,46 @@
             this.btnSaveChanges.UseVisualStyleBackColor = true;
             this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(196, 280);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(46, 15);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "crashes";
+            // 
+            // numThreshold
+            // 
+            this.numThreshold.Location = new System.Drawing.Point(104, 277);
+            this.numThreshold.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numThreshold.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numThreshold.Name = "numThreshold";
+            this.numThreshold.Size = new System.Drawing.Size(86, 23);
+            this.numThreshold.TabIndex = 19;
+            this.numThreshold.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(37, 280);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 15);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Stop after:";
+            // 
             // FrmEditWatchedApp
             // 
             this.AcceptButton = this.btnSaveChanges;
@@ -258,6 +302,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(715, 312);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.numThreshold);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSaveChanges);
             this.Controls.Add(this.groupBox3);
@@ -275,7 +322,9 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRestartAfter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPollInterval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numThreshold)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -300,5 +349,8 @@
         private System.Windows.Forms.CheckBox chkShowWindow;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSaveChanges;
+        private System.Windows.Forms.Label label9;
+        private Controls.NumericUpDownEx numThreshold;
+        private System.Windows.Forms.Label label4;
     }
 }
