@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using AppRestarter.Core.Containers;
+using AppRestarter.Core.Services;
 using AppRestarter.Forms;
 using AppRestarter.Models;
 
@@ -59,6 +60,7 @@ namespace AppRestarter.Utilities.Extensions
         public static void EditWatchedApp(this FrmMain frmMain)
         {
             if (frmMain.listWatchedApps.SelectedItems.Count != 1) return;
+            if (!frmMain.CanProceedToAppEditor()) return;
 
             ListViewItem item = frmMain.listWatchedApps.SelectedItems[0];
 
@@ -88,6 +90,46 @@ namespace AppRestarter.Utilities.Extensions
                 listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
+        }
+
+        public static bool CanProceedToAppEditor(this FrmMain frmMain)
+        {
+            IWatcherService watcherService = WatcherService.GetInstance();
+            if (!watcherService.IsWatching()) return true;
+
+            MessageBox.Show("Please stop the application monitor before adding or modifying an application.",
+                "Application monitor running!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            return false;
+        }
+
+        public static bool StartWatching(this FrmMain frmMain)
+        {
+            IWatcherService watcherService = WatcherService.GetInstance();
+
+            if (frmMain.listWatchedApps.Items.Count == 0 && !watcherService.IsWatching())
+            {
+                MessageBox.Show(
+                    "Application monitor may only be started when there is at least one application to monitor.",
+                    "Application monitor empty!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                return false;
+            }
+
+            if (watcherService.IsWatching())
+            {
+                watcherService.StopWatching();
+                frmMain.btnStartStop.Text = "Start monitoring";
+                frmMain.btnStartStop.Image = Properties.Resources.Start;
+            }
+            else
+            {
+                watcherService.StartWatching();
+                frmMain.btnStartStop.Text = "Stop monitoring";
+                frmMain.btnStartStop.Image = Properties.Resources.Stop;
+            }
+
+            return true;
         }
     }
 }
