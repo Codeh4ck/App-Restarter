@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Reflection;
 using System.Windows.Forms;
 using AppRestarter.Core.Containers;
 using AppRestarter.Core.Observers;
@@ -8,6 +11,7 @@ using AppRestarter.Core.Services;
 using AppRestarter.Models;
 using AppRestarter.Utilities;
 using AppRestarter.Utilities.Extensions;
+using Newtonsoft.Json;
 
 namespace AppRestarter.Forms
 {
@@ -39,7 +43,7 @@ namespace AppRestarter.Forms
         {
             Settings settings = _settingsContainer.GetSettings();
             Location = settings.WindowPosition;
-
+            
             if (settings.MinimizeToTray)
                 trayIcon.Visible = true;
 
@@ -56,6 +60,17 @@ namespace AppRestarter.Forms
 
             if (settings.AlwaysShowLog)
                 FrmLog.GetInstance().Show();
+
+            if (settings.AutoStartWatching)
+                this.StartWatching();
+        }
+
+        private void FrmMain_Shown(object sender, EventArgs e)
+        {
+            Settings settings = _settingsContainer.GetSettings();
+
+            if (settings.AutoCheckForUpdates)
+                CheckForUpdates();
         }
 
         private void FrmMain_Resize(object sender, EventArgs e)
@@ -103,6 +118,8 @@ namespace AppRestarter.Forms
 
         private void addApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!this.CanProceedToAppEditor()) return;
+
             using FrmAddWatchedApp frmAddWatchedApp = new(new AppContainer());
             frmAddWatchedApp.ShowDialog(this);
 
@@ -116,6 +133,7 @@ namespace AppRestarter.Forms
         private void removeSelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (listWatchedApps.SelectedItems.Count == 0) return;
+            if (!this.CanProceedToAppEditor()) return;
 
             DialogResult shouldRemoveApps = MessageBox.Show("Are you sure you would like to remove the selected monitored applications?",
                 "Confirm removal!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
@@ -142,15 +160,31 @@ namespace AppRestarter.Forms
             if (settings.StartWithWindows) Startup.AddToStartup();
             else Startup.RemoveFromStartup();
         }
+        
+        private void editSelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.CanProceedToAppEditor())
+                this.EditWatchedApp();
+        }
+
+        private void CheckForUpdates()
+        {
+            using WebClient webClient = new WebClient();
+            string json = webClient.DownloadString("https://raw.githubusercontent.com/Codeh4ck/App-Restarter/main/Update.json");
+
+            Update update = JsonConvert.DeserializeObject<Update>(json);
+            
+            if (update == null) return;
+
+            if (update.Version > Assembly.GetExecutingAssembly().GetName().Version)
+                FrmUpdateAvailable.ShowAvailableUpdate(this, update);
+        }
 
         private void WatcherStatusObserver_OnWatcherStatusChanged(WatcherStatus status) => statusStripLabelStatus.Text = $"Watcher status: {status:F}";
         private void RestartObserver_OnWatchedAppRestarted(WatchedApp app) => this.UpdateAppRestartCount(app);
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e) => Environment.Exit(0);
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Environment.Exit(0);
-        private void startWatchingSelectedToolStripMenuItem_Click(object sender, EventArgs e) => _watcherService.StartWatching();
-        private void stopWatchingSelectedToolStripMenuItem_Click(object sender, EventArgs e) => _watcherService.StopWatching();
-        private void editSelectedToolStripMenuItem_Click(object sender, EventArgs e) => this.EditWatchedApp();
         private void gitHubToolStripMenuItem_Click(object sender, EventArgs e) => Process.Start("https://github.com/Codeh4ck/App-Restarter");
-
+        private void btnStartStop_Click(object sender, EventArgs e) => this.StartWatching();
     }
 }
