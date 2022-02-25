@@ -31,7 +31,7 @@ namespace AppRestarter.Core.Containers
 
         public void LoadSettings()
         {
-            if (!Directory.Exists(ApplicationsSettingsDirectoryPath) && !File.Exists(ApplicationsSettingsFilePath))
+            if (!Directory.Exists(ApplicationsSettingsDirectoryPath) || !File.Exists(ApplicationsSettingsFilePath))
             {
                 _settings = new();
                 return;
