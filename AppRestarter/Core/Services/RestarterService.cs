@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -11,11 +12,15 @@ namespace AppRestarter.Core.Services
     {
         private readonly ILogService _logService;
         private readonly IRestartObserver _restartObserver;
+        private readonly ICrashMonitorService _crashMonitorService;
+
+        private static readonly TimeSpan CrashThresholdTimespan = TimeSpan.FromMilliseconds(500);
 
         public RestarterService()
         {
             _logService = LogService.GetInstance();
             _restartObserver = RestartObserver.GetInstance();
+            _crashMonitorService = CrashMonitorService.GetInstance();
         }
 
         public int RestartApplication(WatchedApp app)
@@ -23,7 +28,7 @@ namespace AppRestarter.Core.Services
             _logService.AddLog(app, "Attempting to restart application...");
 
             string fullPath = Path.Combine(app.BaseDirectory, app.ExecutableName);
-            string arguments = app.Arguments.Count > 0? BuildArguments(app.Arguments) : string.Empty;
+            string arguments = app.Arguments.Count > 0 ? BuildArguments(app.Arguments) : string.Empty;
 
             ProcessStartInfo startInfo;
 
@@ -55,7 +60,30 @@ namespace AppRestarter.Core.Services
                 };
             }
 
-            Process process = Process.Start(startInfo);
+            Stopwatch stopwatch = new();
+
+            Process process = new()
+            {
+                StartInfo = startInfo,
+                EnableRaisingEvents = true
+            };
+
+            process.Exited += OnProcessOnExited;
+
+            void OnProcessOnExited(object o, EventArgs eventArgs)
+            {
+                stopwatch.Stop();
+
+                if (process.ExitCode != 0)
+                {
+                    if (stopwatch.Elapsed <= CrashThresholdTimespan)
+                        _crashMonitorService.RegisterCrashedApp(app);
+                }
+            }
+
+            process.Start();
+            stopwatch.Start();
+
             int processId = process?.Id ?? -1;
 
             if (processId != -1)
@@ -72,7 +100,7 @@ namespace AppRestarter.Core.Services
         private string BuildArguments(List<CmdArgument> arguments)
         {
             StringBuilder argumentBuilder = new();
-            
+
             foreach (CmdArgument argument in arguments)
                 argumentBuilder.Append($"{argument.Argument} {argument.Value} ");
 
