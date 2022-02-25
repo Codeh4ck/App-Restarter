@@ -22,12 +22,15 @@ namespace AppRestarter.Forms
 
             chkMinimizeToTray.Checked = settings.MinimizeToTray;
             chkStartWithWindows.Checked = settings.StartWithWindows;
+            chkAutoStartMonitoring.Checked = settings.AutoStartWatching;
+            chkAutoCheckForUpdates.Checked = settings.AutoCheckForUpdates;
             chkAlwaysShowLog.Checked = settings.AlwaysShowLog;
             chkAutoResizeColumns.Checked = settings.AutoResizeColumns;
             chkSaveLogsToDisk.Checked = settings.SaveLogsToDisk;
             chkSaveLogsOnDifferentFiles.Checked = settings.SaveAppLogsSeparately;
 
             txtLogsDirectory.Text = settings.LogsFolder;
+            chkSaveLogsOnDifferentFiles.Enabled = chkSaveLogsToDisk.Checked;
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -46,7 +49,12 @@ namespace AppRestarter.Forms
         private void chkSaveLogsToDisk_CheckedChanged(object sender, EventArgs e)
         {
             if (!chkSaveLogsToDisk.Checked)
+            {
                 txtLogsDirectory.Text = string.Empty;
+                chkSaveLogsOnDifferentFiles.Checked = false;
+            }
+
+            chkSaveLogsOnDifferentFiles.Enabled = chkSaveLogsToDisk.Checked;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -79,6 +87,8 @@ namespace AppRestarter.Forms
             {
                 MinimizeToTray = chkMinimizeToTray.Checked,
                 StartWithWindows = chkStartWithWindows.Checked,
+                AutoStartWatching = chkAutoStartMonitoring.Checked,
+                AutoCheckForUpdates = chkAutoCheckForUpdates.Checked,
                 AlwaysShowLog = chkAlwaysShowLog.Checked,
                 AutoResizeColumns = chkAutoResizeColumns.Checked,
                 SaveLogsToDisk = chkSaveLogsToDisk.Checked,
